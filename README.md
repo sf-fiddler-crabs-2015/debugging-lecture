@@ -10,6 +10,7 @@
 #### Debugging Reasoning
 - Read the error messages!
 - Know what your expected behavior is.
+- Understand the input.
 - Understand the program state.
 - Make incremental changes.
 - Check your assumptions.
@@ -17,12 +18,30 @@
 #### Debugging Tools
 
 - Reading error messages
+  - Error messages are your friends!
   - message itself
   - line number
   - stack trace
 
+- Exceptions
+  - An instance of the Exception class
+  - A raised exception will propagate through each method in the call stack until it is stopped or reaches the point where the program started
+  - Raising and rescuing exceptions
+```ruby
+def not_awesome_enough argument
+  begin
+    raise ArgumentError, "#{argument} is not awesome enough"
+  rescue Exception => e
+    puts e.message
+    puts e.backtrace.each { |call| call.inspect }
+  end
+end
+```
+
 - `p` and `puts`
-  - Quick way to examine program execution and state -- we can know whether or not we reached a line, or we can print the values of variables at our chosen execution points.
+  - Quick way to examine program execution and state
+  - We can know whether or not we reached a line.
+  - We can print the values of variables at our chosen execution points.
   - `puts` prints the value of `something.to_s`
   - `p` is `puts something.inspect`
   ```ruby
